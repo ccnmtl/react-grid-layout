@@ -567,7 +567,13 @@ export default class ReactGridLayout extends React.Component<Props, State> {
   processGridItem(child: ReactElement<any>): ?ReactElement<any> {
     if (!child || !child.key) return;
     const l = getLayoutItem(this.state.layout, String(child.key));
-    if (!l) return null;
+      if (!l) return null;
+      if (child.props['data-grid']) {
+          ￼       l.h = child.props['data-grid'].h;
+          ￼       l.w = child.props['data-grid'].w;
+          ￼       l.x = child.props['data-grid'].x;
+          l.y = child.props['data-grid'].y;
+      }
     const {
       width,
       cols,
